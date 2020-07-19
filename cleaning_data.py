@@ -36,3 +36,29 @@ print(dataset.isnull().sum().sum())
 
 dataset.isnull().sum()
 
+
+# Replacing values where a character has been input but an int or float is expected
+# Note: be sure to adjust int or float as needed
+
+cnt = 0
+
+for row in dataset['NUM_BATH']:
+    try:
+        float(row)
+    except ValueError:
+        dataset.loc[cnt, 'NUM_BATH'] = np.nan
+    cnt += 1
+    
+    
+# Replacing values where a number has been input but characters were expected
+
+cnt = 0
+
+for row in dataset['OWN_OCCUPIED']:
+    try:
+        float(row)
+        dataset.loc[cnt, 'OWN_OCCUPIED'] = np.nan
+    except ValueError:
+        pass
+    cnt += 1
+
