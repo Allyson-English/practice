@@ -62,3 +62,14 @@ for row in dataset['OWN_OCCUPIED']:
         pass
     cnt += 1
 
+
+# Replacing null values in number columns with median value
+
+median_beds = dataset['NUM_BEDROOMS'].median()
+median_baths = dataset['NUM_BATH'].median()
+median_sqft = dataset['SQ_FT'].median()
+
+
+dataset['NUM_BEDROOMS'].fillna(median_beds, inplace=True)
+dataset['NUM_BATH'].fillna(median_baths, inplace=True)
+dataset['SQ_FT'].fillna(median_sqft, inplace=True)
